@@ -12,15 +12,20 @@ const FEATURED_IDS = [18, 29, 5, 2, 84, 133, 17, 12];
 
 const STRIP_IDS = [9, 20, 63, 78, 16, 22, 87, 2, 48, 96, 26, 133, 55, 137];
 
-const CAT_PREVIEW = {
-  Bracelets: '/products/titanium_bracelet_heart_2tone.webp',
-  Rings: '/products/tungsten_ring_gold_edge_turbine.webp',
-  Necklaces: '/products/stainless_necklace_18in_x_19mm_box_chain.webp',
-  Bangles: '/products/stainless_steel_bangle_wire_wrap_bangles.webp',
-  'EMF Protection': '/products/emf_safe_haven.webp',
-  'Socks & Insoles': '/products/massaging_gel_insole.webp',
-  'Tech Accessories': '/products/apple_watch_band_sport_black_w_multi_color_holes.webp',
-};
+// Curated thumbnail per category, prefixed with the deploy base so they
+// resolve when the site is hosted from a subpath (e.g. GitHub Pages).
+const ASSET_BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+const CAT_PREVIEW = Object.fromEntries(
+  Object.entries({
+    Bracelets: '/products/titanium_bracelet_heart_2tone.webp',
+    Rings: '/products/tungsten_ring_gold_edge_turbine.webp',
+    Necklaces: '/products/stainless_necklace_18in_x_19mm_box_chain.webp',
+    Bangles: '/products/stainless_steel_bangle_wire_wrap_bangles.webp',
+    'EMF Protection': '/products/emf_safe_haven.webp',
+    'Socks & Insoles': '/products/massaging_gel_insole.webp',
+    'Tech Accessories': '/products/apple_watch_band_sport_black_w_multi_color_holes.webp',
+  }).map(([cat, path]) => [cat, ASSET_BASE + path])
+);
 
 const pad2 = (n) => String(n).padStart(2, '0');
 const pad3 = (n) => String(n).padStart(3, '0');
